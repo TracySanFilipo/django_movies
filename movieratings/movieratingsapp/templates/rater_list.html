@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Rater list</title>
+</head>
+<body>
+    <h1>Raters</h1>
+    <ul>
+        {% for rater in raters %}
+            <li>
+                <a href="rater/{{rater.id}}">{{rater.id}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

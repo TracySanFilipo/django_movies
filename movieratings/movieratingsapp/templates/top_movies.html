@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title>Top 20  movies</title>
+</head>
+<body>
+    <h1>Top 20 Movies</h1>
+    <ol>
+        {% for movie in top_movies %}
+            <li>
+                <a href="movie/{{ movie.id }}">{{movie.title}}</a>
+                Average Rating: {{movie.avg_rating|floatformat:2}}
+            </li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
