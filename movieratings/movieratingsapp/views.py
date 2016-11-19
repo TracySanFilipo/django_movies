@@ -6,12 +6,13 @@ from django.db.models import Count, Avg
 
 
 def index(request):
-    return HttpResponse("Movie Rating for Older Movies")
+    return render(request, 'index.html')
 
 
 def movie_detail(request, var):
     movie = models.Movie.objects.get(pk=var)
-    return render(request, 'movie_detail.html', {'movie':movie})
+    all_ratings = movie.rating_set.order_by("rating")
+    return render(request, 'movie_detail.html', {'movie':movie, 'all_ratings':all_ratings})
 
 
 def movie_list(request):
@@ -21,8 +22,8 @@ def movie_list(request):
 
 def rater_detail(request, var):
     rater = models.Rater.objects.get(pk=var)
-    all_ratings = rater.rating_set.order_by("rating")
-    return render(request, 'rater_detail.html', {'rater':rater, 'all_ratings': all_ratings})
+    all_user_ratings = rater.rating_set.order_by("rating")
+    return render(request, 'rater_detail.html', {'rater':rater, 'all_user_ratings':all_user_ratings})
 
 
 def rater_list(request):

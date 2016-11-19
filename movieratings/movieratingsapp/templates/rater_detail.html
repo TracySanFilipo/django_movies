@@ -1,22 +1,22 @@
 <html>
 <head>
-    <title>Rater</title>
+   <title>Rater</title>
 </head>
 <body>
-    <h1>Rater detail</h1>
-    <h2>age: {{rater.age}}</h2>
-    <h2>gender: {{rater.gender}}</h2>
-    <h2>occupation: {{rater.occupation}}</h2>
-    <h2>zip code: {{rater.zip_code}}</h2>
-    <ul>
-        <h2>Rater id:{{ rater.id }}</h2>
-        {% for rating in all_ratings %}
-            <h2>Movie:
-            <a href="../movie/{{ rating.movie.id }}/">{{rating.movie_id}}</a>
-            rating: {{ rating.rating }}
-            </h2>
-            <h2>{{Movie.title}}</h2>
-        {% endfor %}
-        </ul>
+   <h1>Rater detail</h1>
+   <h2>age: {{rater.age}}</h2>
+   <h2>gender: {{rater.gender}}</h2>
+   <h2>occupation: {{rater.occupation}}</h2>
+   <h2>zip code: {{rater.zip_code}}</h2>
+   <ul>
+       <h2>Rater id:{{ rater.id }}</h2>
+       {% for rating in all_user_ratings %}
+           <h2>Movie: {{rating.movie.title}}
+           <a href="../movie/{{ rating.movie.id }}/">{{rating.movie_id}}</a>
+           rating: {{ rating.rating }}
+           </h2>
+       {% endfor %}
+   </ul>
+   <a href="../">Home</a>
 </body>
 </html>
