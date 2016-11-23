@@ -1,22 +1,36 @@
-<html>
-<head>
-   <title>Rater</title>
-</head>
-<body>
-   <h1>Rater detail</h1>
-   <h2>age: {{rater.age}}</h2>
-   <h2>gender: {{rater.gender}}</h2>
-   <h2>occupation: {{rater.occupation}}</h2>
-   <h2>zip code: {{rater.zip_code}}</h2>
-   <ul>
-       <h2>Rater id:{{ rater.id }}</h2>
-       {% for rating in all_user_ratings %}
-           <h2>Movie: {{rating.movie.title}}
-           <a href="../movie/{{ rating.movie.id }}/">{{rating.movie_id}}</a>
-           rating: {{ rating.rating }}
-           </h2>
-       {% endfor %}
-   </ul>
-   <a href="../">Home</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Rater{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Rater Details</h1>{% endblock %}
+{% block maincontent %}
+    <h2>age: {{rater.age}}</h2>
+    <h2>gender: {{rater.gender}}</h2>
+    <h2>occupation: {{rater.occupation}}</h2>
+    <h2>zip code: {{rater.zip_code}}</h2>
+    <h2>Rater id: {{ rater.id }}</h2>
+{% endblock %}
+{% block secondcontent %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Movie Title</th>
+            <th>Movie Id</th>
+            <th>Rating<th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rating in all_user_ratings %}
+            <tr>
+                <td>
+                    {{rating.movie.title}}
+                </td>
+                <td>
+                    <a href="{% url 'movie' rating.movie.id %}">{{rating.movie_id}}</a>
+                </td>
+                <td>
+                    rating: {{ rating.rating }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

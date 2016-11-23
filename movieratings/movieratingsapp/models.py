@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Movie(models.Model):
     title = models.CharField(max_length=160)
 
-    def __repr__(self):
+    def __str__(self):
         return "{} {}".format(self.id, self.title)
 
     @property
@@ -31,7 +31,7 @@ class Rater(models.Model):
     zip_code = models.CharField(max_length=200)
     user = models.OneToOneField(User, null=True)
 
-    def __repr__(self):
+    def __str__(self):
         return "{} {} {} {}".format(self.age, self.gender, self.occupation, self.zip_code)
 
     @property
@@ -45,7 +45,7 @@ class Rating(models.Model):
     rating = models.IntegerField(default=0)
     timestamp = models.CharField(max_length=32)
 
-    def __repr__(self):
+    def __str__(self):
         return "{} {} {} {}".format(self.rater, self.movie, self.rating, self.timestamp)
 
 
@@ -56,14 +56,3 @@ def add_user():
         r.user.set_password("pass")
         r.user.save()
         r.save()
-
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(user=instance)
-#
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(sender, instance, **kwargs):
-#         instance.profile.save()
-#
-# users = User.objects.all().select_related('profile')

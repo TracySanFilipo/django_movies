@@ -1,15 +1,13 @@
-<html>
-<head>
-    <title>Movie list</title>
-</head>
-<body>
-    <h1>Movies</h1>
+{% extends "base.html" %}
+{% block title %}Movie List{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Movies</h1>{% endblock %}
+{% block maincontent %}
     <ul>
         {% for movie in movies %}
             <li>
-                <a href="movie/{{ movie.id }}">{{movie.title}}</a>
+                <a href="{% url 'movie' movie.id %}">{{movie.title}}</a>
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
+{% block secondcontent %}<a href="{% url 'index' %}"><h4 class="text-center">Home</h4></a>{% endblock %}

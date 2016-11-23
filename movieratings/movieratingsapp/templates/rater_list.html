@@ -1,15 +1,22 @@
-<html>
-<head>
-    <title>Rater list</title>
-</head>
-<body>
-    <h1>Raters</h1>
-    <ul>
+{% extends "base.html" %}
+{% block title %}Rater List{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Raters</h1>{% endblock %}
+{% block maincontent %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rater Id</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for rater in raters %}
-            <li>
-                <a href="rater/{{rater.id}}">{{rater.id}}</a>
-            </li>
+            <tr>
+                <td>
+                    <a href="{% url 'rater' rater.id %}">{{rater.id}}</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
-</body>
-</html>
+        </tbody>
+    </table>
+{% endblock %}
+{% block secondcontent %}<a href="{% url 'index' %}"><h4 class="text-center">Home</h4></a>{% endblock %}

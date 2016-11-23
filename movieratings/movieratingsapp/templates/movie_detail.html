@@ -1,22 +1,16 @@
-<html>
-<head>
-    <title>Movie title</title>
-</head>
-<body>
-    <h1>Movie detail</h1>
-    <h2>{{movie.title}}</h2>
-    <h3>{{movie.url}}</h3>
-    <h4>Average Rating: {{movie.avg_rating}} </h4>
-    <h4>Main menu:<a href="../movie_list">Movie list</a> </h4>
+{% extends "base.html" %}
+{% block title %}Movie Ratings{% endblock %}
+{% block pagetopic %}<h1 class="text-center">{{movie.title}}</h1>{% endblock %}
+{% block maincontent %}
+    <h2>Average Rating: {{movie.avg_rating}}</h2>
+{% endblock %}
+{% block secondcontent %}
     <ul>
         <h2>Movie id:{{ movie.id }}</h2>
         {% for rating in all_ratings %}
-            <h2>Rater: {{ rating.rater.id }}
-            <a href="../rater/{{ rating.rater.id }}/">{{rating.rater_id}}</a>
+            <h2>Rater:
+            <a href="{% url 'rater' rating.rater.id %}">{{rating.rater_id}}</a>
             rating: {{ rating.rating }}
-            </h2>
+        </h2>
         {% endfor %}
-    </ul>
-    <a href="../">Home</a>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Rate Movie{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Rate Movie</h1>{% endblock %}
+{% block maincontent %}
+    <select>
+            {% for movie in movies %}
+                <option
+                <li>
+                    <a href="{% url 'movie' movie.id %}">{{movie.title}}</a>
+                </li>
+                </option>
+            {% endfor %}
+        </select>
+        <select>
+                <option value="1">1</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="2.5">2.5</option>
+                <option value="3">3.5</option>
+                <option value="4">4</option>
+                <option value="4.5">4.5</option>
+                <option value="5">5</option>
+        </select>
+        <input type="text" name="search" placeholder="Search..">
+    </body>
+</html>
+-->
+<html>
+<head><title> Add New Rating</title></head>
+<body>
+    <h1>User ID: {{request.user.id}}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div id="create_rating">
+            {{ form }}
+            <input type="submit" value="Create new movie rating"/>
+        </div>
+    </form>
+{% endblock %}
+{% block secondcontent %}<a href="{% url 'index' %}"><h4 class="text-center">Home</h4></a>{% endblock %}

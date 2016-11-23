@@ -1,16 +1,14 @@
-<html>
-<head>
-    <title>Top 20  movies</title>
-</head>
-<body>
-    <h1>Top 20 Movies</h1>
+{% extends "base.html" %}
+{% block title %}Top 20{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Top 20 Movies</h1>{% endblock %}
+{% block maincontent %}
     <ol>
         {% for movie in top_movies %}
             <li>
-                <a href="movie/{{ movie.id }}">{{movie.title}}</a>
+                <a href="{% url 'movie' movie.id %}">{{movie.title}}</a>
                 Average Rating: {{movie.avg_rating|floatformat:2}}
             </li>
         {% endfor %}
     </ol>
-</body>
-</html>
+{% endblock %}
+{% block secondcontent %}<a href="{% url 'index' %}"><h4 class="text-center">Home</h4></a>{% endblock %}

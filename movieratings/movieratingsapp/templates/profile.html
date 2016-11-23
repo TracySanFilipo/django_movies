@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}User{% endblock %}
+{% block pagetopic %}<h1 class="text-center">User Profile</h1>{% endblock %}
+{% block maincontent %}
+    <h3>20 Movies You Might Want To See:</h3>
+    <ol>
+        {% for movie in top_20_for_user %}
+            <li>
+                <a href="{% url 'movie' rating.movie.id %}">{{user.rater.rating.movie.title}}</a>
+                Average Rating: {{user.rater.rating.movie.avg_rating|floatformat:2}}
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}
+{% block secondcontent %}
+    <p>These are the movies you've rated:</p>
+    {% for rating in request.user.rater.rating_set.all %}
+        <ul>
+            <a href="{% url 'movie' rating.movie.id %}">{{rating.movie.title}}</a>
+            {{rating.rating}}
+        </ul>
+    {% endfor %}
+    <form id="rate movie" action='../../add_rating' >
+        {% csrf_token %}
+        <button type="submit">Rate New Movie</button>
+    </form>
+    <h2>age: {{user.rater.age}}</h2>
+    <h2>gender: {{user.rater.gender}}</h2>
+    <h2>occupation: {{user.rater.occupation}}</h2>
+    <h2>zip code: {{user.rater.zip_code}}</h2>
+{% endblock %}

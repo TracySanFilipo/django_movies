@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Create an Account{% endblock %}
+{% block pagetopic %}<h1 class="text-center">Create an Account</h1>{% endblock %}
+{% block maincontent %}
+<div class="row">
+  <div class="col-md-8">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in userform %}
+          <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+        {% for field in raterform %}
+          <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-default" value="Create the account">
+    </form>
+{% endblock %}
+{% block secondcontent %}{% endblock %}
